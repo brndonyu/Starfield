@@ -6,12 +6,14 @@ int c;
 double speed;
 double angle;
 Particle [] star;
+boolean light = false;
 
 void setup()
 {
 	size(1000,750);
 	star = new Particle [5000];
-	for(int i = 0; i < star.length; i++){
+	star[0] = new OddballParticle(cx,cy);
+	for(int i = 1; i < star.length; i++){
 		a = (int)(Math.random()*255)+1;
 		b = (int)(Math.random()*255)+1;
 		c = (int)(Math.random()*255)+1;
@@ -25,7 +27,7 @@ void draw()
 {	
 	translate(width/2,height/2);
 	stroke(0);
-	//background(0);
+	background(0);
 	fill(0,0,0,30);
 	for(int i = 0; i < star.length; i++){
 		star[i].show();
@@ -34,9 +36,14 @@ void draw()
 }
 
 void mousePressed(){
-	//boolean 
+	if(light == false){
+		background(0);
+		light = true;
+	}else if(light == true){
+		background(255);
+		light = false;
+	}
 
-	background(0);
 
 }
 
@@ -81,17 +88,19 @@ class Particle
 		}
 	}
 }
-/*
+
 class OddballParticle extends Particle
 {
 	OddballParticle(int x,int y){
-
+		myX = x;
+		myY = y;
 	}
 	void show(){
-
+		fill(255,255,0);
+		ellipse(myX, myY, 50,50);
 	}
 	void move(){
-
+		myX += ((Math.random()*6)-3);
+		myY += ((Math.random()*6)-3);
 	}
 }
-*/
