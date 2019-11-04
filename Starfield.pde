@@ -16,7 +16,7 @@ void setup()
 		a = (int)(Math.random()*255)+1;
 		b = (int)(Math.random()*255)+1;
 		c = (int)(Math.random()*255)+1;
-		speed = Math.random()*10;
+		speed = Math.random()*5+5;
 		angle = Math.random()*2*Math.PI;
 		star[i] = new Particle(cx,cy,a,b,c,angle,speed);
 	}
@@ -27,7 +27,7 @@ void draw()
 {	
 	translate(width/2,height/2);
 	stroke(0);
-	//background(0);
+	background(0);
 	fill(0,0,0,30);
 	for(int i = 0; i < star.length; i++){
 		star[i].show();
@@ -69,14 +69,18 @@ class Particle
 		
 		if(myX >= 500){
 			myX = 0;
+			myY = 0;
 		}
 		if(myX < -500){
 			myX = 0;
+			myY = 0;
 		}
 		if(myY > 375){
+			myX = 0;
 			myY = 0;
 		}
 		if(myY < -375){
+			myX = 0;
 			myY = 0;
 		}
 		
